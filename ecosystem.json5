@@ -1,0 +1,49 @@
+{
+  /**
+   * This is a sample configuration file for PM2
+   */
+
+  /**
+   * Here we declare the apps that must be managed by PM2
+   * All options are listed here:
+   * https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#json-app-declaration
+   *
+   */
+  apps : [
+
+    // First application
+    {
+      name      : "API",
+      script    : "server.js",
+      env: {
+        COMMON_VARIABLE: "true"
+      },
+      env_local: {
+        ENV: "local",
+        PORT: "9001"
+      },
+      env_production : {
+        ENV: "production",
+        PORT: "9000"
+      }
+    }
+
+  ],
+
+
+  /**
+   * PM2 help you to deploy apps over your servers
+   * For more help go to :
+   * https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#deployment-pm2--090
+   */
+  deploy : {
+    production : {
+      user : "victor",
+      host : "victorhqc.com",
+      ref  : "origin/master",
+      repo : "https://github.com/victorhqc/hello_world_node.git",
+      path : "/var/www/labs/hello_world_node",
+      "post-deploy" : "npm install && pm2 startOrRestart ecosystem.json5 --env production"
+    }
+  }
+}
