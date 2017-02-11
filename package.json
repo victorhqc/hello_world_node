@@ -4,7 +4,7 @@
   "description": "Hello world Node application",
   "main": "server.js",
   "dependencies": {
-    "body-parser": "^1.4.3",
+    "body-parser": "^1.16.1",
     "express": "^4.4.5"
   }
 }
